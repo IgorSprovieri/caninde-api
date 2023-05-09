@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import { createUser, login } from "../useCases";
 
 class UserController {
-  async login(req: any, res: any) {
+  async login(req: Request, res: Response) {
     try {
       const result = await login.main(req.body);
 
@@ -11,7 +12,7 @@ class UserController {
     }
   }
 
-  async post(req: any, res: any) {
+  async post(req: Request, res: Response) {
     try {
       const result = await createUser.main(req.body);
 
