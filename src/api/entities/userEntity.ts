@@ -1,28 +1,26 @@
 import { IhashPassword } from "../../passwordHasher/interfaces/IhashPassword";
 import { IgenerateId } from "../../idGenerator/IgenerateId";
+import { IdGenerator } from "../../idGenerator";
+import { PasswordHasher } from "../../passwordHasher";
 
 class UserEntity {
-  private generateId: IgenerateId;
-  private hashPassword: IhashPassword;
+  private generateId: IgenerateId = new IdGenerator();
+  private hashPassword: IhashPassword = new PasswordHasher();
 
-  constructor(generateId: IgenerateId, hashPassword: IhashPassword) {
-    this.generateId = generateId;
-    this.hashPassword = hashPassword;
-  }
+  id: string;
+  name: string;
+  cnpj: string;
+  passwordHash: string;
 
-  create(data: Icreate): object {
-    const user = {
-      id: data.id || this.generateId.generate(),
-      name: data.name,
-      cnpj: data.cnpj,
-      passwordHash: this.hashPassword.hash(data.password),
-    };
-
-    return user;
+  constructor(data: Iconstructor) {
+    this.id = data.id || this.generateId.generate();
+    this.name = data.name;
+    this.cnpj = data.cnpj;
+    this.passwordHash = this.hashPassword.hash(data.password);
   }
 }
 
-interface Icreate {
+interface Iconstructor {
   id?: string;
   name: string;
   cnpj: string;

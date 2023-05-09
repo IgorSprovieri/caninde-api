@@ -1,5 +1,7 @@
+import { RentEntity } from "../../../../api/entities/rentEntity";
+
 interface IupdateSavedRent {
-  updateOnDB: (rent: any) => Promise<any>;
+  updateOnDB: (rent: RentEntity) => Promise<any>;
 }
 
 export { IupdateSavedRent };

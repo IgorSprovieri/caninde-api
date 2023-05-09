@@ -1,5 +1,7 @@
+import { RentEntity } from "../../../../api/entities/rentEntity";
+
 interface IsaveRent {
-  saveOnDB: (rent: any) => Promise<any>;
+  saveOnDB: (rent: RentEntity) => Promise<any>;
 }
 
 export { IsaveRent };

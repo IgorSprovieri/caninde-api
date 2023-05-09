@@ -1,4 +1,4 @@
-import { userEntity } from "../../entities";
+import { UserEntity } from "../../entities/userEntity";
 import { IfindUserByCnpj } from "../../../db/repositories/user/interfaces/IfindUserByCnpj";
 import { IsaveUser } from "../../../db/repositories/user/interfaces/IsaveUser";
 
@@ -19,7 +19,7 @@ class CreateUser {
     }
 
     //create new user
-    const user = userEntity.create(data);
+    const user = new UserEntity(data);
 
     //save user on DB
     const result = await this.saveUser.saveOnDB(user);

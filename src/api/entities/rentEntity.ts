@@ -1,39 +1,46 @@
+import { IdGenerator } from "../../idGenerator";
 import { IgenerateId } from "../../idGenerator/IgenerateId";
 
 class RentEntity {
-  private generateId: IgenerateId;
+  private generateId: IgenerateId = new IdGenerator();
 
-  constructor(generateId: IgenerateId) {
-    this.generateId = generateId;
+  public readonly id: string = "";
+
+  public date: Date = new Date();
+  public previousClock: number = 0.0;
+  public currentClock: number = 0.0;
+  public totalBill: number = 0.0;
+  public totalConsumption: number = 0.0;
+  public base: number = 0.0;
+  public water: number = 0.0;
+  public IPTU: number = 0.0;
+  public energyConsumption: number = 0.0;
+  public valueByKwh: number = 0.0;
+  public rentEnergyValue: number = 0.0;
+  public total: number = 0.0;
+
+  constructor(data: Iconstructor) {
+    Object.assign(this, data);
+
+    if (!data.id) {
+      this.id = this.generateId.generate();
+    }
   }
 
-  create(data: Icreate): object {
-    const energyConsumption = data.currentClock - data.previousClock;
-    const valueByKwh = data.totalBill / data.totalConsumption;
+  calculateRent(): void {
+    const energyConsumption = this.currentClock - this.previousClock;
+    const valueByKwh = this.totalBill / this.totalConsumption;
     const rentEnergyValue = energyConsumption * valueByKwh;
-    const total = data.base + data.water + data.IPTU + rentEnergyValue;
+    const total = this.base + this.water + this.IPTU + rentEnergyValue;
 
-    const rent = {
-      id: data.id || this.generateId.generate(),
-      date: data.date,
-      previousClock: data.previousClock,
-      currentClock: data.currentClock,
-      totalBill: data.totalBill,
-      totalConsumption: data.totalConsumption,
-      base: data.base,
-      water: data.water,
-      IPTU: data.IPTU,
-      energyConsumption: energyConsumption,
-      valueByKwh: valueByKwh,
-      rentEnergyValue: rentEnergyValue,
-      total: total,
-    };
-
-    return rent;
+    this.energyConsumption = energyConsumption;
+    this.valueByKwh = valueByKwh;
+    this.rentEnergyValue = rentEnergyValue;
+    this.total = total;
   }
 }
 
-interface Icreate {
+interface Iconstructor {
   id?: string;
   date: Date;
   previousClock: number;
@@ -43,6 +50,10 @@ interface Icreate {
   base: number;
   water: number;
   IPTU: number;
+  energyConsumption?: number;
+  valueByKwh?: number;
+  rentEnergyValue?: number;
+  total?: number;
 }
 
 export { RentEntity };

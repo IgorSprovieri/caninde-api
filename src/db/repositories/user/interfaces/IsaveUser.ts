@@ -1,5 +1,7 @@
+import { UserEntity } from "../../../../api/entities/userEntity";
+
 interface IsaveUser {
-  saveOnDB: (user: any) => Promise<any>;
+  saveOnDB: (user: UserEntity) => Promise<any>;
 }
 
 export { IsaveUser };

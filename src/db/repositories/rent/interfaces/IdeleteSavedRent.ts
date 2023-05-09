@@ -1,5 +1,7 @@
+import { RentEntity } from "../../../../api/entities/rentEntity";
+
 interface IdeleteSavedRent {
-  deleteOnDB: (rent: any) => Promise<any>;
+  deleteOnDB: (rent: RentEntity) => Promise<any>;
 }
 
 export { IdeleteSavedRent };

@@ -1,7 +1,7 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
 import { IfindRentById } from "../../../db/repositories/rent/interfaces/IfindRentById";
 import { IupdateSavedRent } from "../../../db/repositories/rent/interfaces/IupdateSavedRent";
-import { rentEntity } from "../../entities";
+import { RentEntity } from "../../entities/rentEntity";
 
 class RecalculateAndUpdateSavedRent {
   private validateJWT: IvalidateJWT;
@@ -35,7 +35,8 @@ class RecalculateAndUpdateSavedRent {
     Object.assign(rentFound, data);
 
     //create new rent and calculate
-    const rent = rentEntity.create(rentFound);
+    const rent = new RentEntity(rentFound);
+    rent.calculateRent();
 
     //update rent on DB
     const result = await this.updateSavedRent.updateOnDB(rent);

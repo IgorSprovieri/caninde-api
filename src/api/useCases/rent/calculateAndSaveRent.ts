@@ -1,6 +1,6 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
 import { IsaveRent } from "../../../db/repositories/rent/interfaces/IsaveRent";
-import { rentEntity } from "../../entities";
+import { RentEntity } from "../../entities/rentEntity";
 
 class CalculateAndSaveRent {
   private saveRent: IsaveRent;
@@ -19,7 +19,8 @@ class CalculateAndSaveRent {
     }
 
     //create new rent and calculate
-    const rent = rentEntity.create(data);
+    const rent = new RentEntity(data);
+    rent.calculateRent();
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);
