@@ -18,29 +18,25 @@ class DeleteSavedRent {
   }
 
   async main(id: string, token: string): Promise<object> {
-    try {
-      //validate jwt token
-      const auth = await this.validateJWT.validate(token);
-      if (!auth) {
-        throw new Error("Invalid Token");
-      }
-
-      //check if rent exists
-      const rentFound = await this.findRentById.findByIdOnDB(id);
-      if (!rentFound) {
-        throw new Error("Rent not found");
-      }
-
-      //delete rent on DB
-      const result = await this.deleteSavedRent.deleteOnDB(id);
-      if (!result) {
-        throw new Error("Rent not updated");
-      }
-
-      return { ...result };
-    } catch (error) {
-      throw new Error("Unexpected error");
+    //validate jwt token
+    const auth = await this.validateJWT.validate(token);
+    if (!auth) {
+      throw new Error("Invalid Token");
     }
+
+    //check if rent exists
+    const rentFound = await this.findRentById.findByIdOnDB(id);
+    if (!rentFound) {
+      throw new Error("Rent not found");
+    }
+
+    //delete rent on DB
+    const result = await this.deleteSavedRent.deleteOnDB(id);
+    if (!result) {
+      throw new Error("Rent not updated");
+    }
+
+    return { ...result };
   }
 }
 

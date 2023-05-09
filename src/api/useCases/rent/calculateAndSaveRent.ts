@@ -12,27 +12,23 @@ class CalculateAndSaveRent {
   }
 
   async main(data: Imain, token: string): Promise<object> {
-    try {
-      //validate jwt token
-      const auth = await this.validateJWT.validate(token);
-      if (!auth) {
-        throw new Error("Invalid Token");
-      }
-
-      //create new rent and calculate
-      const rent = rentEntity.create(data);
-      rent.calculateRent();
-
-      //save rent on DB
-      const result = await this.saveRent.saveOnDB(rent);
-      if (!result) {
-        throw new Error("Rent not saved");
-      }
-
-      return { ...result };
-    } catch (error) {
-      throw new Error("Unexpected error");
+    //validate jwt token
+    const auth = await this.validateJWT.validate(token);
+    if (!auth) {
+      throw new Error("Invalid Token");
     }
+
+    //create new rent and calculate
+    const rent = rentEntity.create(data);
+    rent.calculateRent();
+
+    //save rent on DB
+    const result = await this.saveRent.saveOnDB(rent);
+    if (!result) {
+      throw new Error("Rent not saved");
+    }
+
+    return { ...result };
   }
 }
 

@@ -19,36 +19,32 @@ class RecalculateAndUpdateSavedRent {
   }
 
   async main(id: string, data: Imain, token: string): Promise<object> {
-    try {
-      //validate jwt token
-      const auth = await this.validateJWT.validate(token);
-      if (!auth) {
-        throw new Error("Invalid Token");
-      }
-
-      //check if rent exists
-      const rentFound = await this.findRentById.findByIdOnDB(id);
-      if (!rentFound) {
-        throw new Error("Rent not found");
-      }
-
-      //update rent found
-      Object.assign(rentFound, data);
-
-      //create new rent and calculate
-      const rent = rentEntity.create(rentFound);
-      rent.calculateRent();
-
-      //update rent on DB
-      const result = await this.updateSavedRent.updateOnDB(rent);
-      if (!result) {
-        throw new Error("Rent not updated");
-      }
-
-      return { ...result };
-    } catch (error) {
-      throw new Error("Unexpected error");
+    //validate jwt token
+    const auth = await this.validateJWT.validate(token);
+    if (!auth) {
+      throw new Error("Invalid Token");
     }
+
+    //check if rent exists
+    const rentFound = await this.findRentById.findByIdOnDB(id);
+    if (!rentFound) {
+      throw new Error("Rent not found");
+    }
+
+    //update rent found
+    Object.assign(rentFound, data);
+
+    //create new rent and calculate
+    const rent = rentEntity.create(rentFound);
+    rent.calculateRent();
+
+    //update rent on DB
+    const result = await this.updateSavedRent.updateOnDB(rent);
+    if (!result) {
+      throw new Error("Rent not updated");
+    }
+
+    return { ...result };
   }
 }
 
