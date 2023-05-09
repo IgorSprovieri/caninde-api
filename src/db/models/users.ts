@@ -2,10 +2,7 @@ import { Entity, Column, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class users {
-  @PrimaryColumn()
-  primaryColumn: number = 0;
-
-  @Column("text")
+  @PrimaryColumn("text")
   id: string = "";
 
   @Column("text")

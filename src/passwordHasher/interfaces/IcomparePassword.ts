@@ -1,5 +1,5 @@
 interface IcomparePassword {
-  compare: (password: string, passwordHash: string) => boolean;
+  compare: (password: string, passwordHash: string) => Promise<boolean>;
 }
 
 export { IcomparePassword };
