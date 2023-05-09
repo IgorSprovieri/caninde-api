@@ -31,9 +31,9 @@ class DeleteSavedRent {
     }
 
     //delete rent on DB
-    const result = await this.deleteSavedRent.deleteOnDB(id);
+    const result = await this.deleteSavedRent.deleteOnDB(rentFound);
     if (!result) {
-      throw new Error("Rent not updated");
+      throw new Error("Rent not deleted");
     }
 
     return { ...result };

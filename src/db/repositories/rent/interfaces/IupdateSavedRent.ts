@@ -1,5 +1,5 @@
 interface IupdateSavedRent {
-  updateOnDB: (rent: object) => Promise<any>;
+  updateOnDB: (rent: any) => Promise<any>;
 }
 
 export { IupdateSavedRent };

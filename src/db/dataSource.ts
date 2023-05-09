@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 import { users } from "./models/users";
+import { rents } from "./models/rents";
 
 const appDataSource = new DataSource({
   type: "postgres",
@@ -8,7 +9,7 @@ const appDataSource = new DataSource({
   username: "docker",
   password: "docker",
   database: "postgres",
-  entities: [users],
+  entities: [users, rents],
   synchronize: true,
   logging: false,
 });

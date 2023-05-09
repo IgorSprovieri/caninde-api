@@ -6,6 +6,7 @@ class PasswordHasher implements IcomparePassword, IhashPassword {
   hash(password: string) {
     return bcrypt.hashSync(password, 10);
   }
+
   async compare(password: string, passwordHash: string) {
     return await bcrypt.compare(password, passwordHash);
   }

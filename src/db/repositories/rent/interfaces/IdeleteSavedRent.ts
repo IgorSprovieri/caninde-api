@@ -1,5 +1,5 @@
 interface IdeleteSavedRent {
-  deleteOnDB: (id: string) => Promise<any>;
+  deleteOnDB: (rent: any) => Promise<any>;
 }
 
 export { IdeleteSavedRent };

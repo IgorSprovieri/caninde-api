@@ -1,5 +1,5 @@
 interface IsaveRent {
-  saveOnDB: (rent: object) => Promise<any>;
+  saveOnDB: (rent: any) => Promise<any>;
 }
 
 export { IsaveRent };

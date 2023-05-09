@@ -36,7 +36,6 @@ class RecalculateAndUpdateSavedRent {
 
     //create new rent and calculate
     const rent = rentEntity.create(rentFound);
-    rent.calculateRent();
 
     //update rent on DB
     const result = await this.updateSavedRent.updateOnDB(rent);

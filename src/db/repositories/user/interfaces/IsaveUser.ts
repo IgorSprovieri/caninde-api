@@ -1,5 +1,5 @@
 interface IsaveUser {
-  saveOnDB: (user: object) => Promise<any>;
+  saveOnDB: (user: any) => Promise<any>;
 }
 
 export { IsaveUser };

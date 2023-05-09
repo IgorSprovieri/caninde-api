@@ -20,7 +20,6 @@ class CalculateAndSaveRent {
 
     //create new rent and calculate
     const rent = rentEntity.create(data);
-    rent.calculateRent();
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);

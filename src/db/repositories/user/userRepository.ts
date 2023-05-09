@@ -10,7 +10,7 @@ class UserRepository implements IfindUserByCnpj, IsaveUser {
     return await userRepository.findOneBy({ cnpj: cnpj });
   }
 
-  async saveOnDB(user: object) {
+  async saveOnDB(user: any) {
     const userCreated = await userRepository.create({ ...user });
     return await userRepository.save(userCreated);
   }
