@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "typescript": "^5.0.4"
+  },
+  "name": "caninde-api",
+  "version": "1.0.0",
+  "description": "Api for caninde",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Igor Sprovieri",
+  "license": "ISC"
+}
