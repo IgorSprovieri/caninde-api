@@ -1,12 +1,17 @@
 import { IgenerateJWT } from "./interfaces/IgenerateJWT";
 import { IvalidateJWT } from "./interfaces/IvalidateJWT";
+import jwt from "jsonwebtoken";
+
+const secret = process.env.HASH_SECRET || "Secret";
 
 class Auth implements IgenerateJWT, IvalidateJWT {
-  generate() {
-    return "";
+  generate(id: string) {
+    return jwt.sign({ id: id }, secret, { expiresIn: "7d" });
   }
+
   async validate(token: string) {
-    return true;
+    const decoded = token.split(" ")[1];
+    return await jwt.verify(decoded, secret);
   }
 }
 

@@ -1,5 +1,5 @@
 interface IgenerateJWT {
-  generate: () => string;
+  generate: (id: string) => string;
 }
 
 export { IgenerateJWT };

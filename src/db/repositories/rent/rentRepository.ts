@@ -1,3 +1,4 @@
+import { RentEntity } from "../../../api/entities/rentEntity";
 import { appDataSource } from "../../dataSource";
 import { rents } from "../../models/rents";
 import { IdeleteSavedRent } from "./interfaces/IdeleteSavedRent";
@@ -16,7 +17,7 @@ class RentRepository
     IsaveRent,
     IupdateSavedRent
 {
-  async saveOnDB(rent: any) {
+  async saveOnDB(rent: RentEntity) {
     const rentCreated = await rentRepository.create({ ...rent });
     return await rentRepository.save(rentCreated);
   }
@@ -29,7 +30,7 @@ class RentRepository
     return await rentRepository.findOneBy({ id: id });
   }
 
-  async updateOnDB(rent: any) {
+  async updateOnDB(rent: RentEntity) {
     const result = await rentRepository.update(rent.id, rent);
     if (!result) {
       return;
@@ -38,7 +39,7 @@ class RentRepository
     return rent;
   }
 
-  async deleteOnDB(rent: any) {
+  async deleteOnDB(rent: RentEntity) {
     const result = await rentRepository.delete({ id: rent.id });
     if (!result) {
       return;

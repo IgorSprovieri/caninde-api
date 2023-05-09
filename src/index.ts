@@ -1,5 +1,8 @@
 import "reflect-metadata";
+import * as dotenv from "dotenv";
+dotenv.config();
 import express from "express";
+
 import { indexRouters } from "./routes";
 import { userRouters } from "./routes/user";
 import { rentRouters } from "./routes/rent";

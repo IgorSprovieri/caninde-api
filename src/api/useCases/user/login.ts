@@ -34,7 +34,7 @@ class Login {
     }
 
     //generate jwt token
-    const token = this.generateJWT.generate();
+    const token = this.generateJWT.generate(userFound.id);
 
     return { ...userFound, token: token };
   }
