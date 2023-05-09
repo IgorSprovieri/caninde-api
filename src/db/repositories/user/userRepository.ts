@@ -3,14 +3,15 @@ import { IsaveUser } from "./interfaces/IsaveUser";
 import { appDataSource } from "../../dataSource";
 import { users } from "../../models/users";
 
+const userRepository = appDataSource.getRepository(users);
+
 class UserRepository implements IfindUserByCnpj, IsaveUser {
   async findByCnpjOnDB(cnpj: string) {
-    return await appDataSource.manager.findOneBy(users, { cnpj: cnpj });
+    return await userRepository.findOneBy({ cnpj: cnpj });
   }
 
   async saveOnDB(user: object) {
-    const instance = await appDataSource.manager.create(users, { ...user });
-    return await appDataSource.manager.save(instance);
+    return await userRepository.create({ ...user });
   }
 }
 
