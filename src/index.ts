@@ -1,7 +1,9 @@
+import "reflect-metadata";
 import express from "express";
 import { indexRouters } from "./routes";
 import { userRouters } from "./routes/user";
 import { rentRouters } from "./routes/rent";
+import { appDataSource } from "./db/dataSource";
 
 const app = express();
 const port = 3333;
@@ -16,7 +18,8 @@ app.use(userRouters);
 app.use(rentRouters);
 
 try {
-  app.listen(port, (): void => {
+  app.listen(port, async () => {
+    await appDataSource.initialize();
     console.log(`Connected successfully on port ${port}`);
   });
 } catch (error) {

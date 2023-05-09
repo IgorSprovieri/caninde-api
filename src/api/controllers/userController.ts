@@ -18,7 +18,13 @@ class UserController {
 
       return res.status(201).json({ result });
     } catch (error) {
-      return res.status(400).json({ error });
+      let message = "Unexpected error";
+
+      if (error instanceof Error) {
+        message = error.message;
+      }
+
+      return res.status(400).json({ error: message });
     }
   }
 }

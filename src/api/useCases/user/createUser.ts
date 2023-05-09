@@ -12,32 +12,28 @@ class CreateUser {
   }
 
   async main(data: Imain) {
-    try {
-      //check if cnpj already exists
-      const alreadyExists = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
-      if (alreadyExists) {
-        throw new Error("User Already Exists");
-      }
-
-      //create new user
-      const user = userEntity.create(data);
-
-      //save user on DB
-      const result = this.saveUser.saveOnDB(user);
-      if (!result) {
-        throw new Error("User not saved");
-      }
-
-      return { ...result };
-    } catch (error) {
-      throw new Error("Unexpected error");
+    //check if cnpj already exists
+    const alreadyExists = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
+    if (alreadyExists) {
+      throw new Error("User Already Exists");
     }
+
+    //create new user
+    const user = userEntity.create(data);
+
+    //save user on DB
+    const result = await this.saveUser.saveOnDB(user);
+    if (!result) {
+      throw new Error("User not saved");
+    }
+
+    return { ...result };
   }
 }
 
 interface Imain {
   name: string;
-  cnpj: number;
+  cnpj: string;
   password: string;
 }
 

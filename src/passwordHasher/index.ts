@@ -3,10 +3,10 @@ import { IhashPassword } from "./interfaces/IhashPassword";
 
 class PasswordHasher implements IcomparePassword, IhashPassword {
   hash(password: string) {
-    return "";
+    return password;
   }
   compare(password: string, passwordHash: string) {
-    return true;
+    return password === passwordHash;
   }
 }
 

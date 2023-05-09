@@ -10,20 +10,13 @@ class UserEntity {
     this.hashPassword = hashPassword;
   }
 
-  id: string = "";
-  name: string = "";
-  cnpj: number = 0;
-  passwordHash: string = "";
-
-  create(data: Icreate): UserEntity {
-    const user = new UserEntity(this.generateId, this.hashPassword);
-
-    Object.assign(this, data);
-    this.passwordHash = this.hashPassword.hash(data.password);
-
-    if (!data.id) {
-      this.id = this.generateId.generate();
-    }
+  create(data: Icreate): object {
+    const user = {
+      id: data.id || this.generateId.generate(),
+      name: data.name,
+      cnpj: data.cnpj,
+      passwordHash: this.hashPassword.hash(data.password),
+    };
 
     return user;
   }
@@ -32,7 +25,7 @@ class UserEntity {
 interface Icreate {
   id?: string;
   name: string;
-  cnpj: number;
+  cnpj: string;
   password: string;
 }
 

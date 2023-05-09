@@ -20,7 +20,7 @@ class Login {
   async main(data: Imain) {
     try {
       //check if user exists
-      const userFound = await this.findUserByCnpj.findByCnpjOnDB(data.cpf);
+      const userFound = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
       if (!userFound) {
         throw new Error("User or password invalid");
       }
@@ -45,7 +45,7 @@ class Login {
 }
 
 interface Imain {
-  cpf: number;
+  cnpj: string;
   password: string;
 }
 

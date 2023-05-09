@@ -1,5 +1,5 @@
 interface IfindUserByCnpj {
-  findByCnpjOnDB: (cnpj: number) => Promise<any>;
+  findByCnpjOnDB: (cnpj: string) => Promise<any>;
 }
 
 export { IfindUserByCnpj };
