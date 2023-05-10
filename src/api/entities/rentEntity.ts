@@ -25,18 +25,20 @@ class RentEntity {
     if (!data.id) {
       this.id = this.generateId.generate();
     }
-  }
 
-  calculateRent(): void {
-    const energyConsumption = this.currentClock - this.previousClock;
-    const valueByKwh = this.totalBill / this.totalConsumption;
-    const rentEnergyValue = energyConsumption * valueByKwh;
-    const total = this.base + this.water + this.IPTU + rentEnergyValue;
+    const { energyConsumption, valueByKwh, rentEnergyValue, total } = data;
 
-    this.energyConsumption = energyConsumption;
-    this.valueByKwh = valueByKwh;
-    this.rentEnergyValue = rentEnergyValue;
-    this.total = total;
+    if (!energyConsumption || !valueByKwh || !rentEnergyValue || !total) {
+      const energyConsumption = data.currentClock - data.previousClock;
+      const valueByKwh = data.totalBill / data.totalConsumption;
+      const rentEnergyValue = energyConsumption * valueByKwh;
+      const total = data.base + data.water + data.IPTU + rentEnergyValue;
+
+      this.energyConsumption = energyConsumption;
+      this.valueByKwh = valueByKwh;
+      this.rentEnergyValue = rentEnergyValue;
+      this.total = total;
+    }
   }
 }
 

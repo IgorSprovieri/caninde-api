@@ -10,7 +10,7 @@ class GetAllSavedRents {
     this.validateJWT = validateJWT;
   }
 
-  async main(token: string): Promise<Array<object>> {
+  async execute(token: string): Promise<Array<object>> {
     //validate jwt token
     await this.validateJWT.validate(token);
 

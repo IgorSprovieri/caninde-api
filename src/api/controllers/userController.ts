@@ -13,7 +13,7 @@ class UserController {
     try {
       await this.requestValidator.loginRequest(req.body);
 
-      const result = await login.main(req.body);
+      const result = await login.execute(req.body);
 
       return res.status(200).json({ result });
     } catch (error) {
@@ -31,7 +31,7 @@ class UserController {
     try {
       await this.requestValidator.postUserRequest(req.body);
 
-      const result = await createUser.main(req.body);
+      const result = await createUser.execute(req.body);
 
       return res.status(201).json({ result });
     } catch (error) {

@@ -11,7 +11,7 @@ class CreateUser {
     this.saveUser = saveUser;
   }
 
-  async main(data: Imain) {
+  async execute(data: Imain) {
     //check if cnpj already exists
     const alreadyExists = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
     if (alreadyExists) {

@@ -16,9 +16,11 @@ class RentController {
 
   async post(req: Request, res: Response) {
     try {
+      //validate request data
       await this.requestValidator.postRentRequest(req.body);
 
-      const result = await calculateAndSaveRent.main(
+      //call calculate and save rent usecase
+      const result = await calculateAndSaveRent.execute(
         req.body,
         req.headers.authorization || ""
       );
@@ -37,7 +39,8 @@ class RentController {
 
   async getAll(req: Request, res: Response) {
     try {
-      const result = await getAllSavedRents.main(
+      //call get saved rents usecase
+      const result = await getAllSavedRents.execute(
         req.headers.authorization || ""
       );
 
@@ -55,9 +58,11 @@ class RentController {
 
   async put(req: Request, res: Response) {
     try {
+      //validate request data
       await this.requestValidator.putRentRequest(req.params, req.body);
 
-      const result = await recalculateAndUpdateSavedRent.main(
+      //call recalculate and update saved rent usecase
+      const result = await recalculateAndUpdateSavedRent.execute(
         req.params.id,
         req.body,
         req.headers.authorization || ""
@@ -77,9 +82,11 @@ class RentController {
 
   async delete(req: Request, res: Response) {
     try {
+      //validate request data
       await this.requestValidator.deleteRentRequest(req.params);
 
-      const result = await deleteSavedRent.main(
+      //call delete saved rent
+      const result = await deleteSavedRent.execute(
         req.params.id,
         req.headers.authorization || ""
       );

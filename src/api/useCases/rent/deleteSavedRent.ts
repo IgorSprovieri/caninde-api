@@ -17,7 +17,7 @@ class DeleteSavedRent {
     this.findRentById = findRentById;
   }
 
-  async main(id: string, token: string): Promise<object> {
+  async execute(id: string, token: string): Promise<object> {
     //validate jwt token
     await this.validateJWT.validate(token);
 

@@ -18,7 +18,7 @@ class RecalculateAndUpdateSavedRent {
     this.findRentById = findRentById;
   }
 
-  async main(id: string, data: Imain, token: string): Promise<object> {
+  async execute(id: string, data: Imain, token: string): Promise<object> {
     //validate jwt token
     await this.validateJWT.validate(token);
 
@@ -33,7 +33,6 @@ class RecalculateAndUpdateSavedRent {
 
     //create new rent and calculate
     const rent = new RentEntity(rentFound);
-    rent.calculateRent();
 
     //update rent on DB
     const result = await this.updateSavedRent.updateOnDB(rent);

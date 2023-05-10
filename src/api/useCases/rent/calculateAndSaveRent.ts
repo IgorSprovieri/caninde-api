@@ -11,13 +11,12 @@ class CalculateAndSaveRent {
     this.validateJWT = validateJWT;
   }
 
-  async main(data: Imain, token: string): Promise<object> {
+  async execute(data: Imain, token: string): Promise<object> {
     //validate jwt token
     await this.validateJWT.validate(token);
 
     //create new rent and calculate
     const rent = new RentEntity(data);
-    rent.calculateRent();
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);

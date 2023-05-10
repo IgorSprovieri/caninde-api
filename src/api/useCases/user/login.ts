@@ -17,7 +17,7 @@ class Login {
     this.generateJWT = generateJWT;
   }
 
-  async main(data: Imain) {
+  async execute(data: Imain) {
     //check if user exists
     const userFound = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
     if (!userFound) {
