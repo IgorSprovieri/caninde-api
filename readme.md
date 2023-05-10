@@ -2,7 +2,13 @@
 
 I did this project for a gas station to optimized the internal processes and help to manage the company
 
-I created using Clean Architeture, for this I used: Express, TypeORM and Postgres
+I used Clean Architeture to developed this project with this technologies below:
+
+- Typescript [(typescriptlang.org)](https://www.typescriptlang.org)
+- Express.js [(expressjs.com)](https://expressjs.com)
+- TypeORM [(typeorm.io)](https://typeorm.io)
+- Docker [(docker.com)](https://www.docker.com)
+- Postgres [(postgresql.org)](https://www.postgresql.org)
 
 ## Features
 
@@ -20,13 +26,9 @@ The API was deployed with AWS EC2
 
 1. Open the file below with figma:
 
-## Technologies
-
-- Typescript [(typescriptlang.org)](https://www.typescriptlang.org)
-- Express.js [(expressjs.com)](https://expressjs.com)
-- TypeORM [(typeorm.io)](https://typeorm.io)
-- Docker [(docker.com)](https://www.docker.com)
-- Postgres [(postgresql.org)](https://www.postgresql.org)
+```
+https://github.com/IgorSprovieri/caninde-api/blob/main/Insomnia.json
+```
 
 ## Getting Started
 
