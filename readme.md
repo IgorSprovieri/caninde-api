@@ -1,8 +1,8 @@
 # Canindé API
 
-I did this project for a gas station to optimized the internal processes and help to manage the company
+I developed this project for a gas station to optimized the internal processes and help to manage the company
 
-I used Clean Architeture to developed this project with this technologies below:
+I used Clean Architecture to develop this project with this technologies below:
 
 - Typescript [(typescriptlang.org)](https://www.typescriptlang.org)
 - Express.js [(expressjs.com)](https://expressjs.com)
