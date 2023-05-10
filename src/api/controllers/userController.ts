@@ -1,9 +1,18 @@
 import { Request, Response } from "express";
 import { createUser, login } from "../useCases";
+import { IuserRequestsValidator } from "../../dataValidator/userRequests/interfaces";
 
 class UserController {
+  private requestValidator: IuserRequestsValidator;
+
+  constructor(requestValidator: IuserRequestsValidator) {
+    this.requestValidator = requestValidator;
+  }
+
   async login(req: Request, res: Response) {
     try {
+      await this.requestValidator.loginRequest(req.body);
+
       const result = await login.main(req.body);
 
       return res.status(200).json({ result });
@@ -20,6 +29,8 @@ class UserController {
 
   async post(req: Request, res: Response) {
     try {
+      await this.requestValidator.postUserRequest(req.body);
+
       const result = await createUser.main(req.body);
 
       return res.status(201).json({ result });

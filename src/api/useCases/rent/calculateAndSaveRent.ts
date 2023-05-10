@@ -13,10 +13,7 @@ class CalculateAndSaveRent {
 
   async main(data: Imain, token: string): Promise<object> {
     //validate jwt token
-    const auth = await this.validateJWT.validate(token);
-    if (!auth) {
-      throw new Error("Invalid Token");
-    }
+    await this.validateJWT.validate(token);
 
     //create new rent and calculate
     const rent = new RentEntity(data);

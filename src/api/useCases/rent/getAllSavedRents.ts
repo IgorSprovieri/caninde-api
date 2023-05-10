@@ -12,10 +12,7 @@ class GetAllSavedRents {
 
   async main(token: string): Promise<Array<object>> {
     //validate jwt token
-    const auth = await this.validateJWT.validate(token);
-    if (!auth) {
-      throw new Error("Invalid Token");
-    }
+    await this.validateJWT.validate(token);
 
     //get all rents saved on DB
     const result = await this.getAllRents.getAllOnDB();

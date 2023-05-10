@@ -19,10 +19,7 @@ class DeleteSavedRent {
 
   async main(id: string, token: string): Promise<object> {
     //validate jwt token
-    const auth = await this.validateJWT.validate(token);
-    if (!auth) {
-      throw new Error("Invalid Token");
-    }
+    await this.validateJWT.validate(token);
 
     //check if rent exists
     const rentFound = await this.findRentById.findByIdOnDB(id);
