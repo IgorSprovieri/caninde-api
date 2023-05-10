@@ -1,5 +1,5 @@
-interface IgenerateId {
-  generate: () => string;
+interface IidGenerator {
+  generateId: () => string;
 }
 
-export { IgenerateId };
+export { IidGenerator };

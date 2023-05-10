@@ -1,4 +1,4 @@
-import { UserEntity } from "../../entities/userEntity";
+import { userEntity } from "../../entities";
 import { IfindUserByCnpj } from "../../../db/repositories/user/interfaces/IfindUserByCnpj";
 import { IsaveUser } from "../../../db/repositories/user/interfaces/IsaveUser";
 
@@ -11,15 +11,15 @@ class CreateUser {
     this.saveUser = saveUser;
   }
 
-  async execute(data: Imain) {
+  async execute(data: executeDTO) {
+    //create new user
+    const user = await userEntity.create(data);
+
     //check if cnpj already exists
     const alreadyExists = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
     if (alreadyExists) {
       throw new Error("User Already Exists");
     }
-
-    //create new user
-    const user = new UserEntity(data);
 
     //save user on DB
     const result = await this.saveUser.saveOnDB(user);
@@ -31,7 +31,7 @@ class CreateUser {
   }
 }
 
-interface Imain {
+interface executeDTO {
   name: string;
   cnpj: string;
   password: string;

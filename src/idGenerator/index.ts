@@ -1,8 +1,8 @@
 import { v4 } from "uuid";
-import { IgenerateId } from "./IgenerateId";
+import { IidGenerator } from "./IgenerateId";
 
-class IdGenerator implements IgenerateId {
-  generate() {
+class IdGenerator implements IidGenerator {
+  generateId() {
     return v4();
   }
 }

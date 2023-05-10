@@ -1,11 +1,11 @@
-import { IdGenerator } from "../../idGenerator";
-import { IgenerateId } from "../../idGenerator/IgenerateId";
+import { IrentEntityValidator } from "../../dataValidator/rentEntity/interface";
+import { IidGenerator } from "../../idGenerator/IgenerateId";
 
 class RentEntity {
-  private generateId: IgenerateId = new IdGenerator();
+  private idGenerator: IidGenerator;
+  private dataValidator: IrentEntityValidator;
 
-  public readonly id: string = "";
-
+  public id: string = "";
   public date: Date = new Date();
   public previousClock: number = 0.0;
   public currentClock: number = 0.0;
@@ -19,11 +19,20 @@ class RentEntity {
   public rentEnergyValue: number = 0.0;
   public total: number = 0.0;
 
-  constructor(data: Iconstructor) {
+  constructor(idGenerator: IidGenerator, dataValidator: IrentEntityValidator) {
+    this.idGenerator = idGenerator;
+    this.dataValidator = dataValidator;
+  }
+
+  async create(data: rentDTO): Promise<RentEntity> {
+    await this.dataValidator.validateData(data);
+
+    const rent = new RentEntity(this.idGenerator, this.dataValidator);
+
     Object.assign(this, data);
 
     if (!data.id) {
-      this.id = this.generateId.generate();
+      rent.id = this.idGenerator.generateId();
     }
 
     const { energyConsumption, valueByKwh, rentEnergyValue, total } = data;
@@ -34,15 +43,17 @@ class RentEntity {
       const rentEnergyValue = energyConsumption * valueByKwh;
       const total = data.base + data.water + data.IPTU + rentEnergyValue;
 
-      this.energyConsumption = energyConsumption;
-      this.valueByKwh = valueByKwh;
-      this.rentEnergyValue = rentEnergyValue;
-      this.total = total;
+      rent.energyConsumption = energyConsumption;
+      rent.valueByKwh = valueByKwh;
+      rent.rentEnergyValue = rentEnergyValue;
+      rent.total = total;
     }
+
+    return rent;
   }
 }
 
-interface Iconstructor {
+interface rentDTO {
   id?: string;
   date: Date;
   previousClock: number;

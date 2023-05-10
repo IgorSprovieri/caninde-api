@@ -5,20 +5,10 @@ import {
   recalculateAndUpdateSavedRent,
   deleteSavedRent,
 } from "../useCases";
-import { IrentRequestsValidator } from "../../dataValidator/rentRequests/interfaces";
 
 class RentController {
-  private requestValidator: IrentRequestsValidator;
-
-  constructor(requestValidator: IrentRequestsValidator) {
-    this.requestValidator = requestValidator;
-  }
-
   async post(req: Request, res: Response) {
     try {
-      //validate request data
-      await this.requestValidator.postRentRequest(req.body);
-
       //call calculate and save rent usecase
       const result = await calculateAndSaveRent.execute(
         req.body,
@@ -58,9 +48,6 @@ class RentController {
 
   async put(req: Request, res: Response) {
     try {
-      //validate request data
-      await this.requestValidator.putRentRequest(req.params, req.body);
-
       //call recalculate and update saved rent usecase
       const result = await recalculateAndUpdateSavedRent.execute(
         req.params.id,
@@ -82,9 +69,6 @@ class RentController {
 
   async delete(req: Request, res: Response) {
     try {
-      //validate request data
-      await this.requestValidator.deleteRentRequest(req.params);
-
       //call delete saved rent
       const result = await deleteSavedRent.execute(
         req.params.id,

@@ -17,7 +17,7 @@ class Login {
     this.generateJWT = generateJWT;
   }
 
-  async execute(data: Imain) {
+  async execute(data: executeDTO) {
     //check if user exists
     const userFound = await this.findUserByCnpj.findByCnpjOnDB(data.cnpj);
     if (!userFound) {
@@ -40,7 +40,7 @@ class Login {
   }
 }
 
-interface Imain {
+interface executeDTO {
   cnpj: string;
   password: string;
 }

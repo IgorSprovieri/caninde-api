@@ -1,6 +1,6 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
 import { IsaveRent } from "../../../db/repositories/rent/interfaces/IsaveRent";
-import { RentEntity } from "../../entities/rentEntity";
+import { rentEntity } from "../../entities";
 
 class CalculateAndSaveRent {
   private saveRent: IsaveRent;
@@ -11,12 +11,12 @@ class CalculateAndSaveRent {
     this.validateJWT = validateJWT;
   }
 
-  async execute(data: Imain, token: string): Promise<object> {
+  async execute(data: rentDTO, token: string): Promise<object> {
     //validate jwt token
     await this.validateJWT.validate(token);
 
     //create new rent and calculate
-    const rent = new RentEntity(data);
+    const rent = await rentEntity.create(data);
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);
@@ -28,7 +28,7 @@ class CalculateAndSaveRent {
   }
 }
 
-interface Imain {
+interface rentDTO {
   date: Date;
   previousClock: number;
   currentClock: number;

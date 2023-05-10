@@ -1,7 +1,7 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
 import { IfindRentById } from "../../../db/repositories/rent/interfaces/IfindRentById";
 import { IupdateSavedRent } from "../../../db/repositories/rent/interfaces/IupdateSavedRent";
-import { RentEntity } from "../../entities/rentEntity";
+import { rentEntity } from "../../entities";
 
 class RecalculateAndUpdateSavedRent {
   private validateJWT: IvalidateJWT;
@@ -18,7 +18,7 @@ class RecalculateAndUpdateSavedRent {
     this.findRentById = findRentById;
   }
 
-  async execute(id: string, data: Imain, token: string): Promise<object> {
+  async execute(id: string, data: rentDTO, token: string): Promise<object> {
     //validate jwt token
     await this.validateJWT.validate(token);
 
@@ -32,7 +32,7 @@ class RecalculateAndUpdateSavedRent {
     Object.assign(rentFound, data);
 
     //create new rent and calculate
-    const rent = new RentEntity(rentFound);
+    const rent = await rentEntity.create(rentFound);
 
     //update rent on DB
     const result = await this.updateSavedRent.updateOnDB(rent);
@@ -44,7 +44,7 @@ class RecalculateAndUpdateSavedRent {
   }
 }
 
-interface Imain {
+interface rentDTO {
   date?: Date;
   previousClock?: number;
   currentClock?: number;
