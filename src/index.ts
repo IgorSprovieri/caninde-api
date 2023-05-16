@@ -2,6 +2,7 @@ import "reflect-metadata";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import cors from "cors";
 
 import { indexRouters } from "./routes";
 import { userRouters } from "./routes/user";
@@ -14,6 +15,7 @@ const port = 3333;
 //Body parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors);
 
 //Routers
 app.use(indexRouters);
