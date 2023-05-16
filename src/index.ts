@@ -13,9 +13,9 @@ const app = express();
 const port = 3333;
 
 //Body parsing Middleware
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors);
 
 //Routers
 app.use(indexRouters);
