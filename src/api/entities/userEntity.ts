@@ -3,9 +3,9 @@ import { IidGenerator } from "../../idGenerator/IgenerateId";
 import { IuserEntityValidator } from "../../dataValidator/userEntity/interface";
 
 class UserEntity {
-  private idGenerator: IidGenerator;
-  private hashPassword: IhashPassword;
-  private dataValidator: IuserEntityValidator;
+  #idGenerator: IidGenerator;
+  #hashPassword: IhashPassword;
+  #dataValidator: IuserEntityValidator;
 
   public id: string = "";
   public name: string = "";
@@ -17,22 +17,24 @@ class UserEntity {
     hashPassword: IhashPassword,
     dataValidator: IuserEntityValidator
   ) {
-    this.dataValidator = dataValidator;
-    this.idGenerator = idGenerator;
-    this.hashPassword = hashPassword;
+    this.#dataValidator = dataValidator;
+    this.#idGenerator = idGenerator;
+    this.#hashPassword = hashPassword;
   }
 
   async create(data: userDTO): Promise<UserEntity> {
-    await this.dataValidator.validateData(data);
+    await this.#dataValidator.validateData(data);
 
-    const { idGenerator, hashPassword, dataValidator } = this;
+    const user = new UserEntity(
+      this.#idGenerator,
+      this.#hashPassword,
+      this.#dataValidator
+    );
 
-    const user = new UserEntity(idGenerator, hashPassword, dataValidator);
-
-    data.id ? (user.id = data.id) : (user.id = this.idGenerator.generateId());
+    data.id ? (user.id = data.id) : (user.id = this.#idGenerator.generateId());
     user.name = data.name;
     user.cnpj = data.cnpj;
-    user.passwordHash = this.hashPassword.hash(data.password);
+    user.passwordHash = this.#hashPassword.hash(data.password);
 
     return user;
   }

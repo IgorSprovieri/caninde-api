@@ -2,8 +2,8 @@ import { IrentEntityValidator } from "../../dataValidator/rentEntity/interface";
 import { IidGenerator } from "../../idGenerator/IgenerateId";
 
 class RentEntity {
-  private idGenerator: IidGenerator;
-  private dataValidator: IrentEntityValidator;
+  #idGenerator: IidGenerator;
+  #dataValidator: IrentEntityValidator;
 
   public id: string = "";
   public date: Date = new Date();
@@ -20,19 +20,19 @@ class RentEntity {
   public total: number = 0.0;
 
   constructor(idGenerator: IidGenerator, dataValidator: IrentEntityValidator) {
-    this.idGenerator = idGenerator;
-    this.dataValidator = dataValidator;
+    this.#idGenerator = idGenerator;
+    this.#dataValidator = dataValidator;
   }
 
   async create(data: rentDTO): Promise<RentEntity> {
-    await this.dataValidator.validateData(data);
+    await this.#dataValidator.validateData(data);
 
-    const rent = new RentEntity(this.idGenerator, this.dataValidator);
+    const rent = new RentEntity(this.#idGenerator, this.#dataValidator);
 
     Object.assign(rent, data);
 
     if (!data.id) {
-      rent.id = this.idGenerator.generateId();
+      rent.id = this.#idGenerator.generateId();
     }
 
     const { energyConsumption, valueByKwh, rentEnergyValue, total } = data;

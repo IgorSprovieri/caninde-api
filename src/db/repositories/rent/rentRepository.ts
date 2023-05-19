@@ -31,7 +31,7 @@ class RentRepository
   }
 
   async updateOnDB(rent: RentEntity) {
-    const result = await rentRepository.update(rent.id, rent);
+    const result = await rentRepository.update(rent.id, { ...rent });
     if (!result) {
       return;
     }

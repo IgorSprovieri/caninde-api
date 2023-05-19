@@ -28,7 +28,7 @@ class RecalculateAndUpdateSavedRent {
       throw new Error("Rent not found");
     }
 
-    //update rent found
+    //update found rent
     Object.assign(rentFound, data);
 
     //create new rent and calculate
