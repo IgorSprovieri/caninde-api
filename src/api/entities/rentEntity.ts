@@ -29,7 +29,7 @@ class RentEntity {
 
     const rent = new RentEntity(this.idGenerator, this.dataValidator);
 
-    Object.assign(this, data);
+    Object.assign(rent, data);
 
     if (!data.id) {
       rent.id = this.idGenerator.generateId();
