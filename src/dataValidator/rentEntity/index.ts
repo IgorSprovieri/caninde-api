@@ -13,10 +13,10 @@ class RentEntityValidator implements IrentEntityValidator {
       base: number().positive().required(),
       water: number().positive().required(),
       IPTU: number().positive().required(),
-      energyConsumption: number().positive().required(),
-      valueByKwh: number().positive().required(),
-      rentEnergyValue: number().positive().required(),
-      total: number().positive().required(),
+      energyConsumption: number().positive(),
+      valueByKwh: number().positive(),
+      rentEnergyValue: number().positive(),
+      total: number().positive(),
     });
 
     return await schema.validate(data);
