@@ -38,10 +38,15 @@ class RentEntity {
     const { energyConsumption, valueByKwh, rentEnergyValue, total } = data;
 
     if (!energyConsumption || !valueByKwh || !rentEnergyValue || !total) {
-      const energyConsumption = data.currentClock - data.previousClock;
-      const valueByKwh = data.totalBill / data.totalConsumption;
+      const energyConsumption =
+        Number(data.currentClock) - Number(data.previousClock);
+      const valueByKwh = Number(data.totalBill) / Number(data.totalConsumption);
       const rentEnergyValue = energyConsumption * valueByKwh;
-      const total = data.base + data.water + data.IPTU + rentEnergyValue;
+      const total =
+        Number(data.base) +
+        Number(data.water) +
+        Number(data.IPTU) +
+        rentEnergyValue;
 
       rent.energyConsumption = energyConsumption;
       rent.valueByKwh = valueByKwh;

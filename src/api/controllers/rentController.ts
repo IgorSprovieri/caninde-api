@@ -9,9 +9,31 @@ import {
 class RentController {
   async post(req: Request, res: Response) {
     try {
+      const {
+        date,
+        previousClock,
+        currentClock,
+        totalBill,
+        totalConsumption,
+        base,
+        water,
+        IPTU,
+      } = req.body;
+
+      const rentToCreate = {
+        date: date,
+        previousClock: previousClock,
+        currentClock: currentClock,
+        totalBill: totalBill,
+        totalConsumption: totalConsumption,
+        base: base,
+        water: water,
+        IPTU: IPTU,
+      };
+
       //call calculate and save rent usecase
       const result = await calculateAndSaveRent.execute(
-        req.body,
+        rentToCreate,
         req.headers.authorization || ""
       );
 
