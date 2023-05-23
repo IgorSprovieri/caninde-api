@@ -1,5 +1,5 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
-import { IgetAllSavedRents } from "../../../db/repositories/rent/interfaces/IgetAllSavedRents";
+import { IgetAllSavedRents } from "../../repositories/rent/interfaces/IgetAllSavedRents";
 
 class GetAllSavedRents {
   private getAllRents: IgetAllSavedRents;

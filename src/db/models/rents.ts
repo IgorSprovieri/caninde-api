@@ -1,47 +1,47 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
 import { users } from "./users";
 
 @Entity()
 export class rents {
   @PrimaryColumn("text")
-  id: string = "";
+  id: string;
 
   @Column("text")
-  userId: string = "";
+  userId: string;
 
   @Column("date")
-  date: Date = new Date();
+  date: Date;
 
   @Column("numeric")
-  previousClock: number = 0.0;
+  previousClock: number;
 
   @Column("numeric")
-  currentClock: number = 0.0;
+  currentClock: number;
 
   @Column("numeric")
-  totalBill: number = 0.0;
+  totalBill: number;
 
   @Column("numeric")
-  totalConsumption: number = 0.0;
+  totalConsumption: number;
 
   @Column("numeric")
-  base: number = 0.0;
+  base: number;
 
   @Column("numeric")
-  water: number = 0.0;
+  water: number;
 
   @Column("numeric")
-  IPTU: number = 0.0;
+  IPTU: number;
 
   @Column("numeric")
-  energyConsumption: number = 0.0;
+  energyConsumption: number;
 
   @Column("numeric")
-  valueByKwh: number = 0.0;
+  valueByKwh: number;
 
   @Column("numeric")
-  rentEnergyValue: number = 0.0;
+  rentEnergyValue: number;
 
   @Column("numeric")
-  total: number = 0.0;
+  total: number;
 }

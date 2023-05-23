@@ -9,20 +9,9 @@ import {
 class RentController {
   async post(req: Request, res: Response) {
     try {
-      const rentToCreate = {
-        date: req.body.date,
-        previousClock: req.body.previousClock,
-        currentClock: req.body.currentClock,
-        totalBill: req.body.totalBill,
-        totalConsumption: req.body.totalConsumption,
-        base: req.body.base,
-        water: req.body.water,
-        IPTU: req.body.IPTU,
-      };
-
       //call calculate and save rent usecase
       const result = await calculateAndSaveRent.execute(
-        rentToCreate,
+        req.body,
         req.headers.authorization || ""
       );
 
@@ -59,21 +48,10 @@ class RentController {
 
   async put(req: Request, res: Response) {
     try {
-      const rentToEdit = {
-        date: req.body.date,
-        previousClock: req.body.previousClock,
-        currentClock: req.body.currentClock,
-        totalBill: req.body.totalBill,
-        totalConsumption: req.body.totalConsumption,
-        base: req.body.base,
-        water: req.body.water,
-        IPTU: req.body.IPTU,
-      };
-
       //call recalculate and update saved rent usecase
       const result = await recalculateAndUpdateSavedRent.execute(
         req.params.id,
-        rentToEdit,
+        req.body,
         req.headers.authorization || ""
       );
 

@@ -1,8 +1,8 @@
 import { Auth } from "../../auth";
 import { PasswordHasher } from "../../passwordHasher";
 
-import { RentRepository } from "../../db/repositories/rent/rentRepository";
-import { UserRepository } from "../../db/repositories/user/userRepository";
+import { RentRepository } from "../repositories/rent/rentRepository";
+import { UserRepository } from "../repositories/user/userRepository";
 
 import { CalculateAndSaveRent } from "./rent/calculateAndSaveRent";
 import { GetAllSavedRents } from "./rent/getAllSavedRents";

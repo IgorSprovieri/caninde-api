@@ -4,12 +4,7 @@ import { createUser, login } from "../useCases";
 class UserController {
   async login(req: Request, res: Response) {
     try {
-      const dataToLogin = {
-        cnpj: req.body.cnpj,
-        password: req.body.password,
-      };
-
-      const result = await login.execute(dataToLogin);
+      const result = await login.execute(req.body);
       result.passwordHash = "";
 
       return res.status(200).json({ result });
@@ -26,13 +21,7 @@ class UserController {
 
   async post(req: Request, res: Response) {
     try {
-      const userToCreate = {
-        cnpj: req.body.cnpj,
-        password: req.body.password,
-        name: req.body.name,
-      };
-
-      const result = await createUser.execute(userToCreate);
+      const result = await createUser.execute(req.body);
       result.passwordHash = "";
 
       return res.status(201).json({ result });

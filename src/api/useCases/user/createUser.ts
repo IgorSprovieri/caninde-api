@@ -1,6 +1,6 @@
 import { userEntity } from "../../entities";
-import { IfindUserByCnpj } from "../../../db/repositories/user/interfaces/IfindUserByCnpj";
-import { IsaveUser } from "../../../db/repositories/user/interfaces/IsaveUser";
+import { IfindUserByCnpj } from "../../repositories/user/interfaces/IfindUserByCnpj";
+import { IsaveUser } from "../../repositories/user/interfaces/IsaveUser";
 
 class CreateUser {
   private findUserByCnpj: IfindUserByCnpj;
@@ -20,6 +20,8 @@ class CreateUser {
     if (alreadyExists) {
       throw new Error("User Already Exists");
     }
+
+    //check if exists 2 users on DB
 
     //save user on DB
     const result = await this.saveUser.saveOnDB(user);

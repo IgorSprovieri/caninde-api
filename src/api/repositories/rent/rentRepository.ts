@@ -1,6 +1,6 @@
-import { RentEntity } from "../../../api/entities/rentEntity";
-import { appDataSource } from "../../dataSource";
-import { rents } from "../../models/rents";
+import { RentEntity } from "../../entities/rentEntity";
+import { appDataSource } from "../../../db/dataSource";
+import { rents } from "../../../db/models/rents";
 import { IdeleteSavedRent } from "./interfaces/IdeleteSavedRent";
 import { IfindRentById } from "./interfaces/IfindRentById";
 import { IgetAllSavedRents } from "./interfaces/IgetAllSavedRents";
@@ -18,7 +18,7 @@ class RentRepository
     IupdateSavedRent
 {
   async saveOnDB(rent: RentEntity) {
-    const rentCreated = await rentRepository.create({ ...rent });
+    const rentCreated = await rentRepository.create(rent);
     return await rentRepository.save(rentCreated);
   }
 

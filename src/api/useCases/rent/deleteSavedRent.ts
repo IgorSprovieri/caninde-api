@@ -1,6 +1,6 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
-import { IdeleteSavedRent } from "../../../db/repositories/rent/interfaces/IdeleteSavedRent";
-import { IfindRentById } from "../../../db/repositories/rent/interfaces/IfindRentById";
+import { IdeleteSavedRent } from "../../repositories/rent/interfaces/IdeleteSavedRent";
+import { IfindRentById } from "../../repositories/rent/interfaces/IfindRentById";
 
 class DeleteSavedRent {
   private validateJWT: IvalidateJWT;
@@ -28,8 +28,8 @@ class DeleteSavedRent {
     }
 
     //check if rent belongs to user
-    if (!rentFound.userId != userId) {
-      throw new Error("Rent not found");
+    if (rentFound.userId !== userId) {
+      throw new Error("User not found");
     }
 
     //delete rent on DB

@@ -1,16 +1,17 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn } from "typeorm";
+import { rents } from "./rents";
 
 @Entity()
 export class users {
   @PrimaryColumn("text")
-  id: string = "";
+  id: string;
 
   @Column("text")
-  name: string = "";
+  name: string;
 
   @Column("text")
-  cnpj: string = "";
+  cnpj: string;
 
   @Column("text")
-  passwordHash: string = "";
+  passwordHash: string;
 }

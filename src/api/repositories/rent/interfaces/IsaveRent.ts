@@ -1,4 +1,4 @@
-import { RentEntity } from "../../../../api/entities/rentEntity";
+import { RentEntity } from "../../../entities/rentEntity";
 
 interface IsaveRent {
   saveOnDB: (rent: RentEntity) => Promise<any>;

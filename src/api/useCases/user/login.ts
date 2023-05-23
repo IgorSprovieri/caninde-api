@@ -1,5 +1,5 @@
 import { IgenerateJWT } from "../../../auth/interfaces/IgenerateJWT";
-import { IfindUserByCnpj } from "../../../db/repositories/user/interfaces/IfindUserByCnpj";
+import { IfindUserByCnpj } from "../../repositories/user/interfaces/IfindUserByCnpj";
 import { IcomparePassword } from "../../../passwordHasher/interfaces/IcomparePassword";
 
 class Login {

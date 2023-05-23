@@ -36,26 +36,24 @@ class RentEntity {
       rent.id = this.#idGenerator.generateId();
     }
 
-    const { energyConsumption, valueByKwh, rentEnergyValue, total } = data;
-
-    if (!energyConsumption || !valueByKwh || !rentEnergyValue || !total) {
-      const energyConsumption =
-        Number(data.currentClock) - Number(data.previousClock);
-      const valueByKwh = Number(data.totalBill) / Number(data.totalConsumption);
-      const rentEnergyValue = energyConsumption * valueByKwh;
-      const total =
-        Number(data.base) +
-        Number(data.water) +
-        Number(data.IPTU) +
-        rentEnergyValue;
-
-      rent.energyConsumption = energyConsumption;
-      rent.valueByKwh = valueByKwh;
-      rent.rentEnergyValue = rentEnergyValue;
-      rent.total = total;
-    }
-
     return rent;
+  }
+
+  calculate() {
+    const energyConsumption =
+      Number(this.currentClock) - Number(this.previousClock);
+    const valueByKwh = Number(this.totalBill) / Number(this.totalConsumption);
+    const rentEnergyValue = energyConsumption * valueByKwh;
+    const total =
+      Number(this.base) +
+      Number(this.water) +
+      Number(this.IPTU) +
+      rentEnergyValue;
+
+    this.energyConsumption = energyConsumption;
+    this.valueByKwh = valueByKwh;
+    this.rentEnergyValue = rentEnergyValue;
+    this.total = total;
   }
 }
 

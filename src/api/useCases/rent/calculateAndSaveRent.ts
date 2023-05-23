@@ -1,5 +1,5 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
-import { IsaveRent } from "../../../db/repositories/rent/interfaces/IsaveRent";
+import { IsaveRent } from "../../repositories/rent/interfaces/IsaveRent";
 import { rentEntity } from "../../entities";
 
 class CalculateAndSaveRent {
@@ -15,8 +15,11 @@ class CalculateAndSaveRent {
     //validate jwt token
     const userId = await this.validateJWT.validate(token);
 
-    //create new rent and calculate
+    //create new rent entity
     const rent = await rentEntity.create({ ...data, userId: userId });
+
+    //calculate rent
+    rent.calculate();
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);

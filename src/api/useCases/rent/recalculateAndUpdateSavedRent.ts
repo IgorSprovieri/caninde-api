@@ -1,6 +1,6 @@
 import { IvalidateJWT } from "../../../auth/interfaces/IvalidateJWT";
-import { IfindRentById } from "../../../db/repositories/rent/interfaces/IfindRentById";
-import { IupdateSavedRent } from "../../../db/repositories/rent/interfaces/IupdateSavedRent";
+import { IfindRentById } from "../../repositories/rent/interfaces/IfindRentById";
+import { IupdateSavedRent } from "../../repositories/rent/interfaces/IupdateSavedRent";
 import { rentEntity } from "../../entities";
 
 class RecalculateAndUpdateSavedRent {
@@ -29,15 +29,18 @@ class RecalculateAndUpdateSavedRent {
     }
 
     //check if rent belongs to user
-    if (!rentFound.userId != userId) {
-      throw new Error("Rent not found");
+    if (rentFound.userId !== userId) {
+      throw new Error("User not found");
     }
 
     //update found rent
     Object.assign(rentFound, data);
 
-    //create new rent and calculate
+    //create new rent entity
     const rent = await rentEntity.create(rentFound);
+
+    //calculate rent
+    rent.calculate();
 
     //update rent on DB
     const result = await this.updateSavedRent.updateOnDB(rent);

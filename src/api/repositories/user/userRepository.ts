@@ -1,8 +1,8 @@
 import { IfindUserByCnpj } from "./interfaces/IfindUserByCnpj";
 import { IsaveUser } from "./interfaces/IsaveUser";
-import { appDataSource } from "../../dataSource";
-import { users } from "../../models/users";
-import { UserEntity } from "../../../api/entities/userEntity";
+import { appDataSource } from "../../../db/dataSource";
+import { users } from "../../../db/models/users";
+import { UserEntity } from "../../entities/userEntity";
 
 const userRepository = appDataSource.getRepository(users);
 
