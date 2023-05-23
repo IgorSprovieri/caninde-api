@@ -70,10 +70,32 @@ class RentController {
 
   async put(req: Request, res: Response) {
     try {
+      const {
+        date,
+        previousClock,
+        currentClock,
+        totalBill,
+        totalConsumption,
+        base,
+        water,
+        IPTU,
+      } = req.body;
+
+      const rentToEdit = {
+        date: date,
+        previousClock: previousClock,
+        currentClock: currentClock,
+        totalBill: totalBill,
+        totalConsumption: totalConsumption,
+        base: base,
+        water: water,
+        IPTU: IPTU,
+      };
+
       //call recalculate and update saved rent usecase
       const result = await recalculateAndUpdateSavedRent.execute(
         req.params.id,
-        req.body,
+        rentToEdit,
         req.headers.authorization || ""
       );
 
