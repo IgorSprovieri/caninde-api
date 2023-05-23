@@ -9,26 +9,15 @@ import {
 class RentController {
   async post(req: Request, res: Response) {
     try {
-      const {
-        date,
-        previousClock,
-        currentClock,
-        totalBill,
-        totalConsumption,
-        base,
-        water,
-        IPTU,
-      } = req.body;
-
       const rentToCreate = {
-        date: date,
-        previousClock: previousClock,
-        currentClock: currentClock,
-        totalBill: totalBill,
-        totalConsumption: totalConsumption,
-        base: base,
-        water: water,
-        IPTU: IPTU,
+        date: req.body.date,
+        previousClock: req.body.previousClock,
+        currentClock: req.body.currentClock,
+        totalBill: req.body.totalBill,
+        totalConsumption: req.body.totalConsumption,
+        base: req.body.base,
+        water: req.body.water,
+        IPTU: req.body.IPTU,
       };
 
       //call calculate and save rent usecase
@@ -70,26 +59,15 @@ class RentController {
 
   async put(req: Request, res: Response) {
     try {
-      const {
-        date,
-        previousClock,
-        currentClock,
-        totalBill,
-        totalConsumption,
-        base,
-        water,
-        IPTU,
-      } = req.body;
-
       const rentToEdit = {
-        date: date,
-        previousClock: previousClock,
-        currentClock: currentClock,
-        totalBill: totalBill,
-        totalConsumption: totalConsumption,
-        base: base,
-        water: water,
-        IPTU: IPTU,
+        date: req.body.date,
+        previousClock: req.body.previousClock,
+        currentClock: req.body.currentClock,
+        totalBill: req.body.totalBill,
+        totalConsumption: req.body.totalConsumption,
+        base: req.body.base,
+        water: req.body.water,
+        IPTU: req.body.IPTU,
       };
 
       //call recalculate and update saved rent usecase

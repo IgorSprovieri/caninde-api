@@ -4,7 +4,13 @@ import { createUser, login } from "../useCases";
 class UserController {
   async login(req: Request, res: Response) {
     try {
-      const result = await login.execute(req.body);
+      const dataToLogin = {
+        cnpj: req.body.cnpj,
+        password: req.body.password,
+      };
+
+      const result = await login.execute(dataToLogin);
+      result.passwordHash = "";
 
       return res.status(200).json({ result });
     } catch (error) {
@@ -20,7 +26,14 @@ class UserController {
 
   async post(req: Request, res: Response) {
     try {
-      const result = await createUser.execute(req.body);
+      const userToCreate = {
+        cnpj: req.body.cnpj,
+        password: req.body.password,
+        name: req.body.name,
+      };
+
+      const result = await createUser.execute(userToCreate);
+      result.passwordHash = "";
 
       return res.status(201).json({ result });
     } catch (error) {
