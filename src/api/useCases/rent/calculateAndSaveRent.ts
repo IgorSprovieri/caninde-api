@@ -13,10 +13,10 @@ class CalculateAndSaveRent {
 
   async execute(data: rentDTO, token: string): Promise<object> {
     //validate jwt token
-    await this.validateJWT.validate(token);
+    const userId = await this.validateJWT.validate(token);
 
     //create new rent and calculate
-    const rent = await rentEntity.create(data);
+    const rent = await rentEntity.create({ ...data, userId: userId });
 
     //save rent on DB
     const result = await this.saveRent.saveOnDB(rent);

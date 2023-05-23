@@ -1,5 +1,5 @@
 interface IgetAllSavedRents {
-  getAllOnDB: () => Promise<Array<any>>;
+  getAllOnDB: (userId: string) => Promise<Array<any>>;
 }
 
 export { IgetAllSavedRents };

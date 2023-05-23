@@ -22,8 +22,8 @@ class RentRepository
     return await rentRepository.save(rentCreated);
   }
 
-  async getAllOnDB() {
-    return await rentRepository.find();
+  async getAllOnDB(userId: string) {
+    return await rentRepository.findBy({ userId: userId });
   }
 
   async findByIdOnDB(id: string) {

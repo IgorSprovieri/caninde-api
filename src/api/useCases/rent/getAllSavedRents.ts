@@ -12,10 +12,10 @@ class GetAllSavedRents {
 
   async execute(token: string): Promise<Array<object>> {
     //validate jwt token
-    await this.validateJWT.validate(token);
+    const userId = await this.validateJWT.validate(token);
 
     //get all rents saved on DB
-    const result = await this.getAllRents.getAllOnDB();
+    const result = await this.getAllRents.getAllOnDB(userId);
     if (!result) {
       throw new Error("Can not get rents");
     }

@@ -6,6 +6,7 @@ class RentEntity {
   #dataValidator: IrentEntityValidator;
 
   public id: string = "";
+  public userId: string = "";
   public date: Date = new Date();
   public previousClock: number = 0.0;
   public currentClock: number = 0.0;
@@ -60,6 +61,7 @@ class RentEntity {
 
 interface rentDTO {
   id?: string;
+  userId: string;
   date: Date;
   previousClock: number;
   currentClock: number;

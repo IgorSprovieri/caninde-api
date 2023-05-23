@@ -6,12 +6,24 @@ const secret = process.env.HASH_SECRET || "Secret";
 
 class Auth implements IgenerateJWT, IvalidateJWT {
   generate(id: string) {
-    return jwt.sign({ id: id }, secret, { expiresIn: "7d" });
+    return jwt.sign({ userId: id }, secret, { expiresIn: "7d" });
   }
 
   async validate(token: string) {
-    const decoded = token.split(" ")[1];
-    return await jwt.verify(decoded, secret);
+    try {
+      const decodedToken = token.split(" ")[1];
+      const decoded: any = await jwt.verify(decodedToken, secret);
+
+      return decoded.userId;
+    } catch (error) {
+      let message = "";
+
+      if (error instanceof Error) {
+        message = error.message;
+      }
+
+      throw new Error(message);
+    }
   }
 }
 

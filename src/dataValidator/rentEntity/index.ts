@@ -5,6 +5,7 @@ class RentEntityValidator implements IrentEntityValidator {
   async validateData(data: any) {
     const schema = object({
       id: string(),
+      userId: string().required(),
       date: date().required(),
       previousClock: number().positive().required(),
       currentClock: number().positive().required(),

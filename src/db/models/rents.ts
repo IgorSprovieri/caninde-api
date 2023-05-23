@@ -1,9 +1,13 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import { users } from "./users";
 
 @Entity()
 export class rents {
   @PrimaryColumn("text")
   id: string = "";
+
+  @Column("text")
+  userId: string = "";
 
   @Column("date")
   date: Date = new Date();

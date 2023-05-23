@@ -20,11 +20,16 @@ class RecalculateAndUpdateSavedRent {
 
   async execute(id: string, data: rentDTO, token: string): Promise<object> {
     //validate jwt token
-    await this.validateJWT.validate(token);
+    const userId = await this.validateJWT.validate(token);
 
     //check if rent exists
     const rentFound = await this.findRentById.findByIdOnDB(id);
     if (!rentFound) {
+      throw new Error("Rent not found");
+    }
+
+    //check if rent belongs to user
+    if (!rentFound.userId != userId) {
       throw new Error("Rent not found");
     }
 
