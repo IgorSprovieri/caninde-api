@@ -18,10 +18,6 @@ I used Clean Architecture to develop this project with this technologies below:
 - Debtors System: Control of customers who are in debt (cooming soon)
 - Expenses System: Calculate and organize the future expenses of the company (cooming soon)
 
-## Production Link
-
-The API was deployed on a local server
-
 ## Documentation
 
 1. Open the file below with figma:
