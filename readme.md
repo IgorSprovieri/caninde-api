@@ -13,14 +13,14 @@ I used Clean Architecture to develop this project with this technologies below:
 ## Features
 
 - Rent System: Calculate the rents of the store that rent interior space
-- Wash System: Control the customers washes
-- Park System: Control of customers that stop at the park
-- Debtors System: Control of customers who are in debt
-- Expenses System: Calculate and organize the future expenses of the company
+- Wash System: Control the customers washes (cooming soon)
+- Park System: Control of customers that stop at the park (cooming soon)
+- Debtors System: Control of customers who are in debt (cooming soon)
+- Expenses System: Calculate and organize the future expenses of the company (cooming soon)
 
 ## Production Link
 
-The API was deployed with AWS EC2
+The API was deployed on a local server
 
 ## Documentation
 
@@ -70,7 +70,7 @@ DATABASE="postgres"
 
 Create your hash secret using: [md5hashgenerator.com](https://www.md5hashgenerator.com)
 
-6. Start on dev mode to create tables
+6. Start on dev mode
 
 ```
 npm run start:dev
@@ -98,4 +98,4 @@ Use CTRL + C to stop
 
 ### _Igor Sprovieri Pereira_
 
-Programming student since 2013, started working with Unity C# in 2020, paticipated in 16 team projects as a freelancer and his own game studio. At this time, he was a tutor on Crie Seus Jogos company, helping students and writing articles to company's website. In 2022 he decided to learn web development with HTML, CSS and JS. Actually he is fullstack programmer and he is specializing in react.js, node.js, docker, mongoose, postgres and sequelize.
+In 2013 I learned to programming games how as a hobbie, in 2020 I started to work on this area, I did some freelancers, opened my game studio and I was a writter for over a year on site crieseusjogos.com. In 2022 I decided to go a web developer professional and today I am fullstack with react and node
