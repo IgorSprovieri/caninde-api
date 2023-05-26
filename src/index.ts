@@ -15,7 +15,6 @@ const port = Number(process.env.PORT) || 3000;
 //Body parsing Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 //Routers
 app.use(indexRouters);
