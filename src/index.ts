@@ -12,8 +12,8 @@ import { appDataSource } from "./db/dataSource";
 const app = express();
 const port = Number(process.env.PORT) || 3000;
 
-//Body parsing Middleware
-app.use(cors({ origin: "*" }));
+//Body Parsing Middleware
+app.use(cors({ origin: "https://caninde.ispapps.com" }));
 app.use(express.json());
 
 //Routers
@@ -21,6 +21,7 @@ app.use(indexRouters);
 app.use(userRouters);
 app.use(rentRouters);
 
+//App Listen
 app.listen(port, "0.0.0.0", async () => {
   try {
     await appDataSource.initialize();
