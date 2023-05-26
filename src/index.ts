@@ -11,6 +11,7 @@ import { appDataSource } from "./db/dataSource";
 
 const app = express();
 const port = 3333;
+const host = "0.0.0.0";
 
 //Body parsing Middleware
 app.use(cors({ origin: "*" }));
@@ -22,11 +23,11 @@ app.use(indexRouters);
 app.use(userRouters);
 app.use(rentRouters);
 
-try {
-  app.listen(port, async () => {
+app.listen(port, host, async () => {
+  try {
     await appDataSource.initialize();
     console.log(`Connected successfully on port ${port}`);
-  });
-} catch (error) {
-  console.error(`Error occured: ${error}`);
-}
+  } catch (error) {
+    console.error(`Error occured: ${error}`);
+  }
+});
