@@ -9,9 +9,11 @@ import { userRouters } from "./routes/user";
 import { rentRouters } from "./routes/rent";
 import { appDataSource } from "./db/dataSource";
 
+const { API_PORT, API_HOST } = process.env;
+const port = Number(API_PORT) || 3000;
+const host = API_HOST || "0.0.0.0";
+
 const app = express();
-const port = 3333;
-const host = "0.0.0.0";
 
 //Body parsing Middleware
 app.use(cors({ origin: "*" }));
