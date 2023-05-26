@@ -9,11 +9,8 @@ import { userRouters } from "./routes/user";
 import { rentRouters } from "./routes/rent";
 import { appDataSource } from "./db/dataSource";
 
-const { API_PORT, API_HOST } = process.env;
-const port = Number(API_PORT) || 3000;
-const host = API_HOST || "0.0.0.0";
-
 const app = express();
+const port = 3000;
 
 //Body parsing Middleware
 app.use(cors({ origin: "*" }));
@@ -25,7 +22,7 @@ app.use(indexRouters);
 app.use(userRouters);
 app.use(rentRouters);
 
-app.listen(port, host, async () => {
+app.listen(port, "0.0.0.0", async () => {
   try {
     await appDataSource.initialize();
     console.log(`Connected successfully on port ${port}`);
