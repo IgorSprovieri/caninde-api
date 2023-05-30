@@ -10,7 +10,7 @@ import { RecalculateAndUpdateSavedRent } from "./rent/recalculateAndUpdateSavedR
 import { DeleteSavedRent } from "./rent/deleteSavedRent";
 import { Login } from "./user/login";
 import { CreateUser } from "./user/createUser";
-
+import { GetUser } from "./user/getUser";
 //-----------------------------------
 
 const auth = new Auth();
@@ -33,7 +33,7 @@ const deleteSavedRent = new DeleteSavedRent(
 );
 const login = new Login(userRepository, auth, passwordHasher);
 const createUser = new CreateUser(userRepository, userRepository);
-
+const getUser = new GetUser(userRepository, auth);
 export {
   calculateAndSaveRent,
   getAllSavedRents,
@@ -41,4 +41,5 @@ export {
   deleteSavedRent,
   login,
   createUser,
+  getUser,
 };

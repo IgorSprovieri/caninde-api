@@ -36,6 +36,9 @@ class Login {
     //generate jwt token
     const token = this.generateJWT.generate(userFound.id);
 
+    //remove password from user
+    userFound.passwordHash = "";
+
     return { ...userFound, token: token };
   }
 }

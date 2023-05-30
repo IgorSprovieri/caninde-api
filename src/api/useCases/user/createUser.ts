@@ -21,13 +21,14 @@ class CreateUser {
       throw new Error("User Already Exists");
     }
 
-    //check if exists 2 users on DB
-
     //save user on DB
     const result = await this.saveUser.saveOnDB(user);
     if (!result) {
       throw new Error("User not saved");
     }
+
+    //remove password from result
+    result.passwordHash = "";
 
     return { ...result };
   }
