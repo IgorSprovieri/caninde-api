@@ -13,7 +13,12 @@ const app = express();
 const port = Number(process.env.PORT) || 3000;
 
 //Body Parsing Middleware
-app.use(cors({ origin: "https://caninde.ispapps.com" }));
+app.use(
+  cors({
+    origin:
+      process.env.ENVIROMENT == "dev" ? "*" : "https://caninde.ispapps.com",
+  })
+);
 app.use(express.json());
 
 //Routers
