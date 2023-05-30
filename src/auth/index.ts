@@ -6,7 +6,7 @@ const secret = process.env.HASH_SECRET || "Secret";
 
 class Auth implements IgenerateJWT, IvalidateJWT {
   generate(id: string) {
-    return jwt.sign({ userId: id }, secret, { expiresIn: "7d" });
+    return jwt.sign({ userId: id }, secret, { expiresIn: "1d" });
   }
 
   async validate(token: string) {
